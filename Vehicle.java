@@ -1,21 +1,22 @@
-
+package com.company;
 
 public abstract class Vehicle {
-    String PlateNumber;
-    Integer VinNumber;
+    String plateNumber;
+    Integer vinNumber;
     String color;
-    Integer Price;
-    Integer Combustion;
-    Integer FuelLevel;
-    Integer DistanceCounter;
+    Integer price;
+    Integer combustion;
+    Integer fuelLevel;
+    Integer distanceCounter;
 
     public Vehicle(String plateNumber, Integer vinNumber, String color, Integer price, Integer combustion, Integer fuelLevel, Integer distanceCounter) {
-        PlateNumber = plateNumber;
-        VinNumber = vinNumber;
+        this.plateNumber = plateNumber;
+        this.vinNumber = vinNumber;
         this.color = color;
-        Price = price;
-        Combustion = combustion;
-        FuelLevel = fuelLevel;
-        DistanceCounter = distanceCounter;
+        this.price = price;
+        this.combustion = combustion;
+        this.fuelLevel = fuelLevel;
+        this.distanceCounter = distanceCounter;
     }
+
 }
