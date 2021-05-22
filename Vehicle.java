@@ -4,13 +4,13 @@ public abstract class Vehicle implements Active {
     String plateNumber;
     Integer vinNumber;
     String color;
-    Integer price;
+    double price;
     Integer combustion;
-    Integer fuelLevel;
+    double fuelLevel;
     Integer distanceCounter;
-    Integer maxFuelLevel;
+    double maxFuelLevel;
 
-    public Vehicle(String plateNumber, Integer vinNumber, String color, Integer price, Integer combustion, Integer fuelLevel, Integer distanceCounter, Integer maxFuelLevel) {
+    public Vehicle(String plateNumber, Integer vinNumber, String color, double price, Integer combustion, double fuelLevel, Integer distanceCounter, double maxFuelLevel) {
         this.plateNumber = plateNumber;
         this.vinNumber = vinNumber;
         this.color = color;
@@ -21,34 +21,30 @@ public abstract class Vehicle implements Active {
         this.maxFuelLevel = maxFuelLevel;
     }
 
+
     @Override
-    public void ride(int kilometer) {
-        if(kilometer <= (this.fuelLevel/this.combustion)*100)
-        {
-            this.distanceCounter+=kilometer;
-            this.fuelLevel=this.fuelLevel-this.combustion*kilometer/100;
-            System.out.println("Aktualny poziom paliwa: " + this.fuelLevel);
-            System.out.println("Aktualny stan licznika: " + this.distanceCounter);
+    public void ride(int distance) {
+        double x=(this.fuelLevel/this.combustion)*100;
+        if (distance <= x){
+            this.distanceCounter +=distance;
+            this.fuelLevel= this.fuelLevel- (distance*this.combustion/100);
+            System.out.println("aktualna liczba km: "+ this.distanceCounter);
         }
-        else
-        {System.out.println("Masz za mało paliwa!!! Zatankuj!!");
+        else{
+            System.out.println("Zatankuj!!");
         }
     }
 
     @Override
-    public void refueling(int fuel) {
-        if (fuel < (this.maxFuelLevel - this.fuelLevel)) {
-            this.fuelLevel += fuel;
+    public void refueling(double fuel) {
+        if (fuel <= this.maxFuelLevel-this.fuelLevel)
+        {
+            this.fuelLevel+=fuel;
             System.out.println("Aktualny poziom paliwa: " + this.fuelLevel);
         }
-        else if(fuel == (this.maxFuelLevel - this.fuelLevel)){
-            this.fuelLevel=this.maxFuelLevel;
-            System.out.println("Zatankowałeś do pełna!");
-        }
         else {
-            int x = fuel-(this.maxFuelLevel-this.fuelLevel);
-            this.fuelLevel=this.maxFuelLevel;
-            System.out.println("Zatankowałeś: "+ x + " Zatankowałeś do pełna!");
+            double x= fuel-this.maxFuelLevel-this.fuelLevel;
+            System.out.println("Zatankowałeś: " +x+ "masz pełn bak!");
         }
     }
 
@@ -56,5 +52,12 @@ public abstract class Vehicle implements Active {
     public void distance() {
         if (this.fuelLevel>this.combustion)
             System.out.println("Starczy paliwa na:"+ ((this.fuelLevel/this.combustion)*100)+" km");
+    }
+
+    @Override
+    public void NewColor(String color) {
+    this.color=color;
+    this.price=this.price*1.05;
+    System.out.println("Aktualna wartość:"+ this.price +" i kolor:"+this.color);
     }
 }
