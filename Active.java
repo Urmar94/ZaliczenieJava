@@ -1,9 +1,9 @@
 package com.company;
 
 public interface Active {
-    public void ride();
+    public void ride(int kilometer);
 
-    public void refueling();
+    public void refueling(int fuel);
 
     public void distance();
 }
